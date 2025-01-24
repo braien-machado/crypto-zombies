@@ -1,4 +1,8 @@
 {
+  "scripts": {
+    "hre:compile": "hardhat compile",
+    "hre:run": "hardhat run scripts/run.ts"
+  },
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^5.0.0",
     "hardhat": "^2.22.18"
