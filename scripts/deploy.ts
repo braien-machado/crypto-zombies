@@ -8,7 +8,7 @@ const main = async () => {
 
   console.log('MockCryptoKitties deployed to', mockCryptoKitties.target)
 
-  const cryptoZombies = await hre.ethers.deployContract('ZombieFeeding')
+  const cryptoZombies = await hre.ethers.deployContract('ZombieHelper')
   await cryptoZombies.waitForDeployment()
 
   console.log('CryptoZombies deployed to', cryptoZombies.target)
@@ -22,8 +22,10 @@ const main = async () => {
 
   const feedZombieProcess = await cryptoZombies.feedOnKitty(1, 15)
   await feedZombieProcess.wait()
-
   console.log('Zombie has been fed with a Kitty')
+
+  const zombiesByOwner = await cryptoZombies.getZombiesByOwner(owner.address)
+  console.log('Zombies owned by', owner.address, ':', zombiesByOwner)
 }
 
 const runMain = async () => {
