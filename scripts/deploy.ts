@@ -26,6 +26,11 @@ const main = async () => {
 
   const zombiesByOwner = await cryptoZombies.getZombiesByOwner(owner.address)
   console.log('Zombies owned by', owner.address, ':', zombiesByOwner)
+
+  const levelUpProcess = (await cryptoZombies.levelUp(zombiesByOwner[0], { value: hre.ethers.parseEther('0.001') }))
+  await levelUpProcess.wait()
+
+  console.log('Zombie', zombiesByOwner[0], 'leveled up')
 }
 
 const runMain = async () => {
